@@ -8,9 +8,6 @@ total_months = 0
 total = 0
 greatest_increase = 0
 greatest_decrease = 0 
-month_greatest_increase = "tbd"
-month_greatest_decrease = "tbd"
-
 
 # declare budget list array 
 budget = []
@@ -33,7 +30,6 @@ with open(csvpath) as csvfile:
     # Read the header row first (skip this step if there is now header)
     csv_header = next(csvreader)
    # print(f"CSV Header: {csv_header}")
-
 
     # Read each row of data after the header
     for row in csvreader:
@@ -60,11 +56,6 @@ def find_month_variance(variance):
             return budget[x + 1][0]    
             break    
         
-
-
-print(find_month_variance(1926159))
-print(find_month_variance(-2196167))
-
 # calculate results
 ave_change = calculate_variance()
 total_months = len(budget)
@@ -84,16 +75,18 @@ print(f"Greatest Increase in Profits: {month_greatest_increase} ${greatest_incre
 print(f"Greatest Decrease in Profits: {month_greatest_decrease} ${greatest_decrease}")
 
 
+# open a new text file with "write" mode.
+file = open("analyis.txt", "w")
 
-#print(greatest_increase)
-#print(greatest_decrease)
-#print(ave_change)
-#print(total_months)
-#print(total)
+# write the results to the text file
+file.write("Financial Analysis\n")
+file.write("-" * 20)
+file.write(f"\nTotal Months: {total_months}\n")
+file.write(f"Total: ${total}\n")
+file.write(f"Average Change: ${ave_change}\n")
+file.write(f"Greatest Increase in Profits: {month_greatest_increase} ${greatest_increase}\n")
+file.write(f"Greatest Decrease in Profits: {month_greatest_decrease} ${greatest_decrease}\n")
 
-#print(budget_variance)
-# print(budget[1][1])
-# check answers
-
-
+# make sure the file is closed
+file.close()
 
